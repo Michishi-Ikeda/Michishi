@@ -7,7 +7,7 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <p>example</p>
+        <p>example2</p>
         <h1>Blog Name</h1>
         <div class='posts'>
             @foreach ($posts as $post)
