@@ -8,6 +8,7 @@
     </head>
     <body>
         <p>example2</p>
+        <p>My Blog</p>
         <h1>Blog Name</h1>
         <div class='posts'>
             @foreach ($posts as $post)
