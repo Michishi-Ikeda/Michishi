@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<x-app-layout>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -7,17 +8,22 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
+        <x-slot name="header">
+                Index
+            </x-slot>
         <p>example</p>
         <p>My Blog</p>
         <h1>Blog Name</h1>
         <a href = "/posts/create">create</a>
         <div class='posts'>
             @foreach ($posts as $post)
+            
                 <div class='post'>
                     <h2 class='title'>
                         <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                     </h2
                     <p class='body'>{{ $post->body }}</p>
+                    <a href="/categories/{{ $post->category->id }}">{{ $post->category->name }}</a>
                     <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post">
                         @csrf
                         @method('DELETE')
@@ -26,6 +32,17 @@
                 </div>
             @endforeach
         </div>
+        
+        <div>
+        @foreach($questions as $question)
+            <div>
+                <a href="https://teratail.com/questions/{{ $question['id'] }}">
+                    {{ $question['title'] }}
+                </a>
+            </div>
+        @endforeach
+        </div>
+        {{ Auth::user('ログインユーザー:Michishi')->name }}
         <div class='paginate'>
             {{ $posts->links()}}
         </div>
@@ -37,8 +54,8 @@
                     document.getElementById(`form_${id}`).submit();
             }
         }
-        
         </script>
+        
     </body>
 </html>
-
+</x-app-layout>
